@@ -1,1 +1,1 @@
-# java-text-utils
+# java-string-utils
