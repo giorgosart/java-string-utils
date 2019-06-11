@@ -3,24 +3,18 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <dependencies>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>5.3.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 
   <properties>
     <maven-compiler.version>3.8.0</maven-compiler.version>
     <java.version>1.8</java.version>
   </properties>
-  
-  <groupId>uk.co.artemiou</groupId>
-  <artifactId>java-text-utils</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>${project.groupId}:${project.artifactId}</name>
+
+  <groupId>com.github.giorgosart</groupId>
+  <artifactId>java-string-utils</artifactId>
+  <version>1.0</version>
+  <packaging>jar</packaging>
+
+  <name>java-string-utils</name>
   <description>
     A java library for string manipulation
   </description>
@@ -52,6 +46,16 @@
     <system>GitHub</system>
     <url>https://github.com:giorgosart/java-text-utils.git/issues</url>
   </issueManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.3.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
   <build>
     <plugins>
 
