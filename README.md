@@ -1,5 +1,7 @@
-# java-string-utils
+https://img.shields.io/maven-central/v/com.github.giorgosart/java-string-utils.svg?style=flat-square
 
+# java-string-utils
+A simple Java string utility library
 
 ## Usage
 ```
