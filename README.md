@@ -1,4 +1,5 @@
 ![Maven Central](https://img.shields.io/maven-central/v/com.github.giorgosart/java-string-utils.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # java-string-utils
 A simple Java string utility library
