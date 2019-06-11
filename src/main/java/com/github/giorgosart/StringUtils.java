@@ -1,37 +1,25 @@
-/**
- *
- */
-public class JavaTextUtils {
+package com.github.giorgosart;
 
-  private JavaTextUtils() { /* cannot be instantiated */ }
+/**
+ * All String operations are null safe
+ *
+ * @author George.Artemiou
+ * @version 1.0.0
+ * @since 1.0.0
+ */
+public class StringUtils {
+
+  private StringUtils() { /* cannot be instantiated */ }
 
   /**
+   * returns the default string passed in if the string to be examined is blank
+   *
    * @param str the string to be examined
    * @param defaultString the default string to be used if the str is blank
    * @return the defaultString if the str is blank
    */
   public static String defaultString(String str, String defaultString) {
-    return isBlank(str) ? defaultString : str;
-  }
-
-  /**
-   * Checks if the string is null, its length is 0 or whitespace.
-   *
-   * @param str the string to be examined, can be null
-   * @return true if str is null, its length is 0 or whitespace
-   */
-  public static boolean isBlank(String str) {
-    return (str == null || str.isEmpty() || str.matches("^\\s*$"));
-  }
-
-  /**
-   * Checks if the string is null or its length is 0.
-   *
-   * @param str the string to be examined, can be null
-   * @return true if str is null or its length is 0
-   */
-  public static boolean isEmpty(String str) {
-    return (str == null || str.isEmpty());
+    return Validator.isBlank(str) ? defaultString : str;
   }
 
   /**
@@ -42,7 +30,7 @@ public class JavaTextUtils {
    * @param trimPosition where should the string be truncated at, either beginning or end
    * @return the original string if the length of the string is smaller than width
    */
-  public static String truncate(String str, int width, TruncateAt trimPosition) {
+  public static String truncate(String str, int width, String trimPosition) {
     return truncate(str, width, trimPosition, false);
   }
 
@@ -56,14 +44,14 @@ public class JavaTextUtils {
    * @return the original string if the length of the string is smaller than width, otherwise the
    * truncated string
    */
-  public static String truncate(String str, int width, TruncateAt trimPosition,
+  public static String truncate(String str, int width, String trimPosition,
       boolean includeEllipsis) {
-    if (isBlank(str) || str.length() < width) {
+    if (Validator.isBlank(str) || str.length() < width) {
       return str;
     }
-    if (trimPosition.equals(TruncateAt.START)) {
+    if (trimPosition.equals(TruncateAt.START.toString())) {
       return includeEllipsis ? str.substring(0, width) + "..." : str.substring(0, width);
-    } else if (trimPosition.equals(TruncateAt.END)) {
+    } else if (trimPosition.equals(TruncateAt.END.toString())) {
       return includeEllipsis ? "..." + str.substring(width) : str.substring(width);
     }
     return str;
