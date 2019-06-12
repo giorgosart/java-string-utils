@@ -16,8 +16,8 @@ A simple Java string utility library
 ```
 import static com.github.giorgosart.StringUtils.defaultString;
 import static com.github.giorgosart.StringUtils.truncate;
-import static com.github.giorgosart.Validator.isBlank;
-import static com.github.giorgosart.Validator.isEmpty;
+import static com.github.giorgosart.StringUtils.isBlank;
+import static com.github.giorgosart.StringUtils.isEmpty;
 import com.github.giorgosart.TruncateAt;
 
 public class Main {
