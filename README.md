@@ -1,5 +1,4 @@
-![Maven Central](https://img.shields.io/maven-central/v/com.github.giorgosart/java-string-utils.svg)
-[![Javadocs](https://www.javadoc.io/badge/com.github.giorgosart/java-string-utils.svg)](https://www.javadoc.io/doc/com.github.giorgosart/java-string-utils)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.giorgosart/java-string-utils.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.giorgosart%22%20AND%20a:%22java-string-utils%22)[![Javadocs](https://www.javadoc.io/badge/com.github.giorgosart/java-string-utils.svg)](https://www.javadoc.io/doc/com.github.giorgosart/java-string-utils)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # java-string-utils
