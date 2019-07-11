@@ -2,14 +2,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # java-string-utils
-A simple Java string utility library
+A `null` safe Java string manipulation library.
+
+For javadoc, visit [this link](https://www.javadoc.io/doc/com.github.giorgosart/java-string-utils/)
 
 ## Usage
 ```
 <dependency>
   <groupId>com.github.giorgosart</groupId>
   <artifactId>java-string-utils</artifactId>
-  <version>1.0.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
