@@ -5,20 +5,26 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 class StringUtilsTest {
 
   @Test
   void areAnagram() {
     assertTrue(StringUtils.areAnagram("nag a ram", "anagram"));
-    assertFalse(StringUtils.areAnagram(null, null));
-  }
+    assertTrue(StringUtils.areAnagram("evil", "vile"));
+    assertTrue(StringUtils.areAnagram("eviL", "Vile"));
+    assertTrue(StringUtils.areAnagram("a gentleman", "elegant man"));
+    assertTrue(StringUtils.areAnagram("eleven plus two", "twelve plus one"));
 
-  @Test
-  void defaultString() {
-    assertEquals(StringUtils.defaultString(null, "test"), "test");
-    assertEquals(StringUtils.defaultString("test", "testing"), "test");
+    assertFalse(StringUtils.areAnagram(null, null));
+    assertFalse(StringUtils.areAnagram("first", null));
+    assertFalse(StringUtils.areAnagram(null, "second"));
+    assertFalse(StringUtils.areAnagram("one", "two"));
+    assertFalse(StringUtils.areAnagram("three", "false"));
   }
 
   @Test
@@ -30,6 +36,26 @@ class StringUtilsTest {
 
     assertTrue(StringUtils.contains("test", "TE", true));
     assertTrue(StringUtils.contains("Test", "t", true));
+  }
+
+  @Test
+  void defaultString() {
+    String[] testInput = new String[]{"a", "b", "c", "d", "e", "f", "g"};
+    assertEquals(StringUtils.defaultString(null, "test"), "test");
+    assertEquals(StringUtils.defaultString("", "test"), "test");
+    assertEquals(StringUtils.defaultString("test", "testing"), "test");
+
+    assertEquals(StringUtils.defaultString("test", new String[]{}), "test");
+    assertEquals(StringUtils.defaultString(null, new String[]{}), "");
+    assertTrue(Arrays.asList(testInput).contains(StringUtils.defaultString("", testInput)));
+  }
+
+  @Test
+  void randomString() {
+    String[] testInput = new String[]{"a", "b", "c", "d", "e", "f", "g"};
+    assertTrue(Arrays.asList(testInput).contains(StringUtils.randomString(testInput)));
+    assertEquals(StringUtils.randomString(new String[]{}), "");
+    assertEquals(StringUtils.randomString(null), "");
   }
 
   @Test
@@ -94,5 +120,12 @@ class StringUtilsTest {
     assertEquals("test-test", StringUtils.toKebabCase("test test"));
     assertEquals("", StringUtils.toKebabCase(""));
     assertEquals(null, StringUtils.toKebabCase(null));
+  }
+
+  @Test
+  void toSnakeCase() {
+    assertEquals("test_test", StringUtils.toSnakeCase("test test"));
+    assertEquals("", StringUtils.toSnakeCase(""));
+    assertEquals(null, StringUtils.toSnakeCase(null));
   }
 }

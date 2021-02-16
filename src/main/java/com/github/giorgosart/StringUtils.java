@@ -1,6 +1,7 @@
 package com.github.giorgosart;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  * The {@code StringUtils} class is a NULL safe string manipulation library
@@ -14,7 +15,7 @@ public class StringUtils {
   private StringUtils() { /* cannot be instantiated */ }
 
   /**
-   * Checks if two words are an anagram of each other
+   * Case insensitive check between two words whether they are an anagram of each other
    *
    * @param firstWord the first word to be examined
    * @param secondWord the second word to be examined
@@ -26,8 +27,15 @@ public class StringUtils {
     if (isEmpty(firstWord) || isEmpty(secondWord)) {
       return false;
     }
-    return Arrays.equals(firstWord.replaceAll(" ", "").codePoints().sorted().toArray(),
-        secondWord.replaceAll(" ", "").codePoints().sorted().toArray());
+
+    firstWord = firstWord.replaceAll(" ", "").toLowerCase();
+    secondWord = secondWord.replaceAll(" ", "").toLowerCase();
+
+    if (firstWord.length() != secondWord.length()) {
+      return false;
+    }
+
+    return Arrays.equals(firstWord.chars().sorted().toArray(), secondWord.chars().sorted().toArray());
   }
 
   /**
@@ -61,7 +69,7 @@ public class StringUtils {
   }
 
   /**
-   * returns the default string passed in if the string to be examined is blank
+   * Returns the default string passed in if the string to be examined is blank
    *
    * @param str the string to be examined
    * @param defaultString the default string to be used if the {@code str} is blank
@@ -73,10 +81,41 @@ public class StringUtils {
   }
 
   /**
+   * Returns a random default string from the array passed in if the string to be examined is blank. If the array
+   * is empty then it returns an empty string.
+   *
+   * @param str the string to be examined.
+   * @param array the array to be used for a random default string to be used if the {@code str} is blank.
+   * @return an element from the {@code array} if the {@code str} is blank.
+   * @since 1.3.0
+   */
+  public static String defaultString(String str, String[] array) {
+    if (isBlank(str)) {
+      return randomString(array);
+    }
+    return str;
+  }
+
+  /**
+   * Returns a random string from a given array. If the array is empty then it returns an empty string.
+   *
+   * @param array an array of strings.
+   * @return an element of the array.
+   * @since 1.3.0
+   */
+  public static String randomString(String[] array) {
+    if (array == null || array.length == 0) {
+      return "";
+    }
+
+    return array[new Random().nextInt(array.length-1)];
+  }
+
+  /**
    * Checks if the string is null, its length is 0 or a whitespace.
    *
-   * @param str the string to be examined, can be null
-   * @return true if {@code str} is null, its length is 0 or a whitespace, false otherwise
+   * @param str the string to be examined, can be null.
+   * @return true if {@code str} is null, its length is 0 or a whitespace, false otherwise.
    * @since 1.0.0
    */
   public static boolean isBlank(String str) {
@@ -86,8 +125,8 @@ public class StringUtils {
   /**
    * Checks if the string is null or its length is 0.
    *
-   * @param str the string to be examined, can be null
-   * @return true if {@code str} is null or its length is 0, false otherwise
+   * @param str the string to be examined, can be null.
+   * @return true if {@code str} is null or its length is 0, false otherwise.
    * @since 1.0.0
    */
   public static boolean isEmpty(String str) {
@@ -95,10 +134,10 @@ public class StringUtils {
   }
 
   /**
-   * Checks whether the passed in string is a palindrome
+   * Checks whether the passed in string is a palindrome.
    *
-   * @param str the string to be checked
-   * @return true if {@code str} is a palindrome, false otherwise
+   * @param str the string to be checked.
+   * @return true if {@code str} is a palindrome, false otherwise.
    * @since 1.1.0
    */
   public static boolean isPalindrome(String str) {
@@ -107,11 +146,11 @@ public class StringUtils {
   }
 
   /**
-   * A null check implementation of the String.length() method
+   * A null check implementation of the String.length() method.
    *
-   * @param str the string to be examined, can be null
+   * @param str the string to be examined, can be null.
    * @return -1 if {@code str} is null otherwise the length of the string that was passed in as an
-   * argument
+   * argument.
    * @since 1.2.0
    */
   public static int length(String str) {
@@ -119,9 +158,9 @@ public class StringUtils {
   }
 
   /**
-   * Reverse the string passed in
+   * Reverse the string passed in.
    *
-   * @param str the string to be reversed
+   * @param str the string to be reversed.
    * @return a reversed version of {@code str}
    * @since 1.1.0
    */
@@ -130,13 +169,13 @@ public class StringUtils {
   }
 
   /**
-   * Returns a truncated string based on the parameters passed in
+   * Returns a truncated string based on the parameters passed in.
    *
-   * @param str the string to be examined, can be null
-   * @param maxWidth the expected maximum width of the string
-   * @param trimPosition where should the string be truncated at, either beginning or end
+   * @param str the string to be examined, can be null.
+   * @param maxWidth the expected maximum width of the string.
+   * @param trimPosition where should the string be truncated at, either beginning or end.
    * @return the {@code str} if the length of the string is smaller than {@code maxWidth}, otherwise
-   * a truncated version of {@code str}
+   * a truncated version of {@code str}.
    * @since 1.0.0
    */
   public static String truncate(String str, int maxWidth, String trimPosition) {
@@ -144,14 +183,14 @@ public class StringUtils {
   }
 
   /**
-   * Returns a truncated string based on the parameters passed in
+   * Returns a truncated string based on the parameters passed in.
    *
-   * @param str the string to be examined, can be null
-   * @param maxWidth the expected maximum width of the string
-   * @param trimPosition where should the string be truncated at, either beginning or end
-   * @param includeEllipsis whether the ellipsis characters should be included or not
+   * @param str the string to be examined, can be null.
+   * @param maxWidth the expected maximum width of the string.
+   * @param trimPosition where should the string be truncated at, either beginning or end.
+   * @param includeEllipsis whether the ellipsis characters should be included or not.
    * @return the {@code str} if the length of the string is smaller than {@code maxWidth}, otherwise
-   * a truncated version of {@code str}
+   * a truncated version of {@code str}.
    * @since 1.0.0
    */
   public static String truncate(String str, int maxWidth, String trimPosition,
@@ -160,15 +199,15 @@ public class StringUtils {
   }
 
   /**
-   * Returns a truncated string based on the parameters passed in
+   * Returns a truncated string based on the parameters passed in.
    *
-   * @param str the string to be examined, can be null
-   * @param maxWidth the expected maximum width of the string
-   * @param trimPosition where should the string be truncated at, either beginning or end
-   * @param includeEllipsis whether the ellipsis characters should be included or not
-   * @param ellipseCharacter the character to be used to replace the truncated string
+   * @param str the string to be examined, can be null.
+   * @param maxWidth the expected maximum width of the string.
+   * @param trimPosition where should the string be truncated at, either beginning or end.
+   * @param includeEllipsis whether the ellipsis characters should be included or not.
+   * @param ellipseCharacter the character to be used to replace the truncated string.
    * @return the {@code str} if the length of the string is smaller than {@code maxWidth}, otherwise
-   * a truncated version of {@code str}
+   * a truncated version of {@code str}.
    * @since 1.2.0
    */
   public static String truncate(String str, int maxWidth, String trimPosition,
@@ -187,12 +226,24 @@ public class StringUtils {
 
 
   /**
+   * Combines all words from the passed in string by replacing each space character with a dash character
    *
-   * @param str the string to be examined, can be null
-   * @return the {@code str} in kebab case
+   * @param str the string to be examined, can be null.
+   * @return the {@code str} in kebab case.
    * @since 1.2.0
    */
   public static String toKebabCase(String str) {
     return isBlank(str) ? str : str.replaceAll(" ", "-");
   }
+
+    /**
+     * Combines all words from the passed in string by replacing each space character with an underscore character
+     *
+     * @param str the string to be examined, can be null.
+     * @return the {@code str} in kebab case.
+     * @since 1.3.0
+     */
+    public static String toSnakeCase(String str) {
+        return isBlank(str) ? str : str.replaceAll(" ", "_");
+    }
 }
